@@ -10,7 +10,11 @@
         android:label="ListFragment" >
         <action
             android:id="@+id/actionDetailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/fragment_fade_enter" />
+        <action
+            android:id="@+id/actionCreateList"
+            app:destination="@id/creatListFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -18,10 +22,19 @@
         android:label="DetailFragment" >
         <action
             android:id="@+id/actionListFragment"
-            app:destination="@id/listFragment" />
+            app:destination="@id/listFragment"
+            app:exitAnim="@anim/fragment_close_exit" />
         <argument
             android:name="id"
             android:defaultValue="0"
             app:argType="integer"/>
+    </fragment>
+    <fragment
+        android:id="@+id/creatListFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.CreateListFragment"
+        android:label="CreatListFragment" >
+        <action
+            android:id="@+id/actionResultCreate"
+            app:destination="@id/listFragment" />
     </fragment>
 </navigation>
