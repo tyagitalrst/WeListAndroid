@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 apply plugin: "androidx.navigation.safeargs"
 
 
@@ -32,8 +34,9 @@ android {
 
 def navVersion = '2.2.0-beta01'
 def supportVersion = '28.0.0'
-
+def roomVersion = "2.2.1"
 def cardview_version = "1.0.0"
+def lifeCycleExtensionVersion = '2.1.0'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -42,15 +45,20 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
-
     implementation 'com.google.android.material:material:1.0.0'
     implementation "com.android.support:design:$supportVersion"
     implementation "androidx.cardview:cardview:$cardview_version"
 
+    implementation "android.arch.lifecycle:extensions:$lifeCycleExtensionVersion"
+    kapt "android.arch.lifecycle:compiler:$lifeCycleExtensionVersion"
+
     implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
 
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
