@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WeList</string>
+    <string name="action_settings">Pengaturan</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hallo fragment kosong</string>
+
+    <!--Create New List-->
+    <string name="new_item">Barang Baru</string>
+    <string name="title">Judul</string>
+    <string name="notes">Catatan</string>
+    <string name="price">Harga</string>
+    <string name="link">Tautan</string>
+    <string name="choose_picture">Pilih Gambar</string>
+    <string name="submit">Kirim</string>
+</resources>

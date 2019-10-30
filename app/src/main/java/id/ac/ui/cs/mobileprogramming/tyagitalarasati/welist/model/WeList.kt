@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "welist_table")
 data class WeList(
-    var title: String,
 //    var image: Int,
+    var title: String,
     var notes: String,
     var price: String,
     var link: String

@@ -4,4 +4,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Create New List-->
+    <string name="new_item">New Item</string>
+    <string name="title">Title</string>
+    <string name="notes">Notes</string>
+    <string name="price">Price</string>
+    <string name="link">Link</string>
+    <string name="choose_picture">Choose Picture</string>
+    <string name="submit">Submit</string>
 </resources>

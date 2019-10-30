@@ -1,12 +1,19 @@
 package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view
 
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 
@@ -16,7 +23,6 @@ import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.WeListView
 import kotlinx.android.synthetic.main.fragment_create_list.*
 
 
-
 /**
  * A simple [Fragment] subclass.
  */
@@ -24,9 +30,15 @@ class CreateListFragment : Fragment() {
 
     companion object {
         fun newInstance() = CreateListFragment()
+        //image pick code
+        private val IMAGE_PICK_CODE = 1000;
+        //Permission code
+        private val PERMISSION_CODE = 1001;
     }
 
     private lateinit var viewModel: WeListViewModel
+    private var imageList = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +54,26 @@ class CreateListFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(WeListViewModel::class.java)
 
 
+        buttonPhotos.setOnClickListener{
+            //check runtime permission
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if (getActivity()?.getApplicationContext()?.let { it1 -> checkSelfPermission(it1, Manifest.permission.WRITE_EXTERNAL_STORAGE) } != PackageManager.PERMISSION_GRANTED){
+                    //permission denied
+                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
+                    //show popup to request runtime permission
+                    requestPermissions(permissions, PERMISSION_CODE);
+                }
+                else{
+                    //permission already granted
+                    pickImageFromGallery();
+                }
+            }
+            else{
+                //system OS is < Marshmallow
+                pickImageFromGallery();
+            }
+        }
+
         buttonSubmit.setOnClickListener{
             saveNote()
             Navigation.findNavController(it)
@@ -51,20 +83,54 @@ class CreateListFragment : Fragment() {
     }
 
 
-    fun saveNote() {
+    private fun saveNote() {
         if (editTextTitle.text.toString().trim().isBlank()
             || editTextNotes.text.toString().trim().isBlank()) {
-            Toast.makeText(getActivity(),"Can not insert empty note!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity,"Can not insert empty note!", Toast.LENGTH_SHORT).show()
+        } else {
+            val newWeList = WeList(
+                editTextTitle.text.toString(),
+                editTextNotes.text.toString(),
+                editTextPrice.text.toString(),
+                editTextLink.text.toString())
+
+            viewModel.insert(newWeList)
+            Toast.makeText(activity,"New list", Toast.LENGTH_SHORT).show()
+
         }
 
-        val newWeList = WeList(editTextTitle.text.toString(),
-                            editTextNotes.text.toString(),
-                            editTextPrice.text.toString(),
-                            editTextLink.text.toString())
+    }
 
-        viewModel.insert(newWeList)
-        Toast.makeText(getActivity(),"New list", Toast.LENGTH_SHORT).show()
+    private fun pickImageFromGallery() {
+        //Intent to pick image
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_PICK_CODE)
+    }
 
+    //handle requested permission result
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when(requestCode){
+            PERMISSION_CODE -> {
+                if (grantResults.size >0 && grantResults[0] ==
+                    PackageManager.PERMISSION_GRANTED){
+                    //permission from popup granted
+                    pickImageFromGallery()
+                }
+                else{
+                    //permission from popup denied
+                    Toast.makeText(activity, "Permission denied", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    //handle result of picked image
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
+            imageList = (data?.data).toString()
+            imageViewCreate.setImageURI(data?.data)
+        }
     }
 
 

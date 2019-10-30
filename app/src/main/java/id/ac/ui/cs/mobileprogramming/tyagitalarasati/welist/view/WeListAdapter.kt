@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.WeList
 import kotlinx.android.synthetic.main.content_list.view.*
+import kotlinx.android.synthetic.main.fragment_create_list.view.*
 
 class WeListAdapter: RecyclerView.Adapter<WeListAdapter.WeListViewHolder>(){
 
@@ -24,7 +26,7 @@ class WeListAdapter: RecyclerView.Adapter<WeListAdapter.WeListViewHolder>(){
 
     override fun onBindViewHolder(holder: WeListViewHolder, position: Int) {
         val currentWeList = weLists[position]
-//        holder.view.image.setImageResource(currentWeList.image)
+//        holder.view.imageViewCreate.setImageURI(Uri.parse(currentWeList.image))
         holder.view.title.text = currentWeList.title
         holder.view.price.text = currentWeList.price
         holder.view.setOnClickListener {
