@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.WeList
 import kotlinx.android.synthetic.main.content_list.view.*
-import kotlinx.android.synthetic.main.fragment_create_list.view.*
+
 
 class WeListAdapter: RecyclerView.Adapter<WeListAdapter.WeListViewHolder>(){
 

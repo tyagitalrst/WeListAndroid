@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.youtube.player.YouTubeStandalonePlayer
 
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.WeList
@@ -50,7 +51,10 @@ class ListFragment : Fragment() {
         floatingActionButton.setOnClickListener{
             Navigation.findNavController(it)
                 .navigate(ListFragmentDirections.actionCreateList())
+//            val intent = YouTubeStandalonePlayer.createVideoIntent(activity, "AIzaSyD331YQUKyZK_sY7LSXxFUO1Q8SoUjB6GM", "ap14O5-G7UA")
+//            startActivity(intent)
         }
+
 
     }
 
