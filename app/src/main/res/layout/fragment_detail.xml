@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="@+id/priceDetails"
         app:layout_constraintTop_toBottomOf="@+id/priceDetails"
+        android:background="@color/brokenWhite"
         tools:context=".view.DetailFragment">
 
         <TextView
@@ -15,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title Item"
+            android:textColor="@color/orange"
             android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,6 +42,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="72dp"
             android:text="@string/notes"
+            android:textColor="@color/orange"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -50,6 +53,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="Details notes"
+            android:textColor="@color/blue"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notesDetails" />
@@ -60,7 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-        android:text="@string/price"
+            android:text="@string/price"
+            android:textColor="@color/orange"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notesContentDetails" />
 
@@ -71,6 +76,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="Details price"
+            android:textColor="@color/blue"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/priceDetails" />
@@ -82,6 +88,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/link"
+            android:textColor="@color/orange"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/priceContentDetails" />
 
@@ -92,6 +99,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="Details link"
+            android:textColor="@color/blue"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linkDetails" />

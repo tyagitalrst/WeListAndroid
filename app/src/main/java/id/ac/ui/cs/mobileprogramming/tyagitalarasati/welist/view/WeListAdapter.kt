@@ -26,7 +26,7 @@ class WeListAdapter: RecyclerView.Adapter<WeListAdapter.WeListViewHolder>(){
 
     override fun onBindViewHolder(holder: WeListViewHolder, position: Int) {
         val currentWeList = weLists[position]
-//        holder.view.imageViewCreate.setImageURI(Uri.parse(currentWeList.image))
+        holder.view.image.setImageURI(Uri.parse(currentWeList.image))
         holder.view.title.text = currentWeList.title
         holder.view.price.text = currentWeList.price
         holder.view.setOnClickListener {

@@ -15,6 +15,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/brokenWhite"
             tools:context=".view.CreateListFragment">
 
             <TextView
@@ -22,6 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/new_item"
+                android:textColor="@color/blue"
                 android:textSize="48sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +50,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="64dp"
                 android:text="@string/title"
+                android:textColor="@color/blue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewCreate" />
 
@@ -58,6 +61,8 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/itemTitleCreate"
                 app:layout_constraintTop_toBottomOf="@+id/itemTitleCreate" />
@@ -69,6 +74,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/notes"
+                android:textColor="@color/blue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
 
@@ -79,6 +85,8 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/notesTitleCreate"
                 app:layout_constraintTop_toBottomOf="@+id/notesTitleCreate" />
@@ -90,6 +98,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/price"
+                android:textColor="@color/blue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextNotes" />
 
@@ -100,6 +109,8 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/priceTitleCreate"
                 app:layout_constraintTop_toBottomOf="@+id/priceTitleCreate" />
@@ -111,6 +122,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/link"
+                android:textColor="@color/blue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextPrice" />
 
@@ -121,6 +133,8 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/linkTitleCreate"
                 app:layout_constraintTop_toBottomOf="@+id/linkTitleCreate" />
@@ -130,17 +144,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:background="@drawable/rounded_button"
                 android:text="@string/submit"
+                android:textColor="@color/blue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextLink" />
 
             <Button
                 android:id="@+id/buttonPhotos"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_button"
                 android:text="@string/choose_picture"
+                android:textColor="@color/blue"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

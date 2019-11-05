@@ -48,8 +48,8 @@ class PopulateDbAsyncTask(db: WeListDatabase?) : AsyncTask<Unit, Unit, Unit>() {
     private val weListDao = db?.weListDao()
 
     override fun doInBackground(vararg p0: Unit?) {
-        weListDao?.insert(WeList("Title 1", "Notes 1", "Price 1", "Link 1"))
-        weListDao?.insert(WeList("Title 2", "Notes 2", "Price 2", "Link 2"))
-        weListDao?.insert(WeList("Title 3", "Notes 3", "Price 3", "Link 3"))
+//        weListDao?.insert(WeList("Title 1", "Notes 1", "Price 1", "Link 1"))
+//        weListDao?.insert(WeList("Title 2", "Notes 2", "Price 2", "Link 2"))
+//        weListDao?.insert(WeList("Title 3", "Notes 3", "Price 3", "Link 3"))
     }
 }

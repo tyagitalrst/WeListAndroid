@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view
 
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.WeList
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.WeListViewModel
+import kotlinx.android.synthetic.main.content_list.*
 import kotlinx.android.synthetic.main.fragment_detail.*
 
 /**
@@ -51,6 +53,7 @@ class DetailFragment : Fragment() {
         viewModel.detailList(weListId+1).observe(this, Observer { weList ->
             weList?.let {
 //                imageView.setImageResource(film.image)
+                imageView.setImageURI(Uri.parse(weList.image))
                 titleDetails.text = weList.title
                 notesContentDetails.text = weList.notes
                 priceContentDetails.text = weList.price
