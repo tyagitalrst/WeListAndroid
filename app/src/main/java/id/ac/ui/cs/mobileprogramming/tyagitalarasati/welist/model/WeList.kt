@@ -6,13 +6,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "welist_table")
 data class WeList(
-//    var image: Int,
     var image: String,
     var title: String,
     var notes: String,
     var price: String,
-    var link: String
-
+    var link: String,
+    var youtubeId: String
 ) {
 
     @PrimaryKey(autoGenerate = true)

@@ -11,7 +11,8 @@
         <action
             android:id="@+id/actionDetailFragment"
             app:destination="@id/detailFragment"
-            app:enterAnim="@anim/fragment_fade_enter" />
+            app:enterAnim="@anim/fragment_fade_enter" >
+        </action>
         <action
             android:id="@+id/actionCreateList"
             app:destination="@id/creatListFragment" />

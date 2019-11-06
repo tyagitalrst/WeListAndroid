@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view
 
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.google.android.youtube.player.YouTubeStandalonePlayer
+
 
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.WeList
@@ -28,6 +34,8 @@ class DetailFragment : Fragment() {
 
     private lateinit var viewModel: WeListViewModel
     private var weListId = 0
+    private var API_KEY = "AIzaSyD331YQUKyZK_sY7LSXxFUO1Q8SoUjB6GM"
+    private var VIDEO_ID = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,20 +52,46 @@ class DetailFragment : Fragment() {
             weListId = DetailFragmentArgs.fromBundle(it).id
         }
 
+
         viewModel = ViewModelProviders.of(this).get(WeListViewModel::class.java)
         observeViewModel()
+
+        buttonDelete.setOnClickListener {
+            viewModel.deleteList(weListId + 1)
+            Navigation.findNavController(it)
+                .navigate(DetailFragmentDirections.actionListFragment())
+        }
+
+        button.setOnClickListener {
+            Log.d("youtubeid", VIDEO_ID)
+            val intent = YouTubeStandalonePlayer.createVideoIntent(activity, API_KEY, VIDEO_ID)
+            startActivity(intent)
+        }
+
+
+        Log.d("youtubeid detail", VIDEO_ID)
+//
+//        val imageUrl = "http://img.youtube.com/vi/JPSqzS_V4Ic/0.jpg"
+        val imageUrl = "https://img.youtube.com/vi/JPSqzS_V4Ic/hqdefault.jpg"
+
+        val requestOptions = RequestOptions()
+            .placeholder(R.drawable.img_placeholder)
+        Glide.with(this)
+            .load(imageUrl)
+            .apply(requestOptions)
+            .into(thumbnailYoutube)
     }
 
     fun observeViewModel() {
 
-        viewModel.detailList(weListId+1).observe(this, Observer { weList ->
+        viewModel.detailList(weListId + 1).observe(this, Observer { weList ->
             weList?.let {
-//                imageView.setImageResource(film.image)
                 imageView.setImageURI(Uri.parse(weList.image))
                 titleDetails.text = weList.title
                 notesContentDetails.text = weList.notes
                 priceContentDetails.text = weList.price
                 linkContentDetails.text = weList.link
+                VIDEO_ID = weList.youtubeId
             }
         })
 

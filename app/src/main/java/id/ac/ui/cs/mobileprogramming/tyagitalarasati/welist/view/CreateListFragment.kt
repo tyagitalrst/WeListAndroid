@@ -12,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
@@ -21,6 +20,7 @@ import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.WeList
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.WeListViewModel
 import kotlinx.android.synthetic.main.fragment_create_list.*
+import android.util.Log
 
 
 /**
@@ -32,10 +32,11 @@ class CreateListFragment : Fragment() {
         fun newInstance() = CreateListFragment()
         private val IMAGE_PICK_CODE = 1000
         private val PERMISSION_CODE = 1001
+        private var IMAGE_CREATE_LIST = "android.resource://id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist/drawable/img_placeholder"
     }
 
     private lateinit var viewModel: WeListViewModel
-    private var imageList = ""
+    private var youtubeID = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,6 +74,7 @@ class CreateListFragment : Fragment() {
         }
 
         buttonSubmit.setOnClickListener{
+            checkValidLinkYoutube()
             if (editTextTitle.text.toString().trim().isBlank()
                 || editTextNotes.text.toString().trim().isBlank()) {
                 Toast.makeText(activity,"Can not insert empty note!", Toast.LENGTH_SHORT).show()
@@ -106,8 +108,7 @@ class CreateListFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
-            imageList = (data?.data).toString()
-//            imageViewCreate.setImageURI(data?.data)
+            IMAGE_CREATE_LIST = (data?.data).toString()
             imageViewCreate.setImageURI(data?.data)
         }
     }
@@ -115,11 +116,12 @@ class CreateListFragment : Fragment() {
 
     private fun saveList() {
         val newWeList = WeList(
-            imageList,
+            IMAGE_CREATE_LIST,
             editTextTitle.text.toString(),
             editTextNotes.text.toString(),
             editTextPrice.text.toString(),
-            editTextLink.text.toString())
+            editTextLink.text.toString(),
+            youtubeID)
 
         viewModel.insert(newWeList)
         Toast.makeText(activity,"New list", Toast.LENGTH_SHORT).show()
@@ -129,6 +131,19 @@ class CreateListFragment : Fragment() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_PICK_CODE)
+    }
+
+
+    private fun checkValidLinkYoutube() {
+        var userInput = editTextLink.text.toString()
+        var link1 = "youtu.be/"
+        var link2 = "youtube.com/watch?v="
+        if (userInput.contains(link2)){
+            youtubeID = userInput.substringAfter(delimiter = "=")
+            Log.d("ini yang di save", youtubeID)
+        } else {
+            Toast.makeText(activity,"Please, only put youtube link!", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

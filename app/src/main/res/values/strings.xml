@@ -10,7 +10,8 @@
     <string name="title">Title</string>
     <string name="notes">Notes</string>
     <string name="price">Price</string>
-    <string name="link">Link</string>
+    <string name="link">Youtube Link</string>
     <string name="choose_picture">Choose Picture</string>
     <string name="submit">Submit</string>
+    <string name="delete_button">Delete Wishlist</string>
 </resources>
