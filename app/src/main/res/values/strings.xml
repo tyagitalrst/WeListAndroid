@@ -14,4 +14,5 @@
     <string name="choose_picture">Choose Picture</string>
     <string name="submit">Submit</string>
     <string name="delete_button">Delete Wishlist</string>
+    <string name="play_video">Play Video</string>
 </resources>

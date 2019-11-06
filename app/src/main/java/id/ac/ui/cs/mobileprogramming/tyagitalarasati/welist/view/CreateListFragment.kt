@@ -32,11 +32,13 @@ class CreateListFragment : Fragment() {
         fun newInstance() = CreateListFragment()
         private val IMAGE_PICK_CODE = 1000
         private val PERMISSION_CODE = 1001
-        private var IMAGE_CREATE_LIST = "android.resource://id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist/drawable/img_placeholder"
     }
 
     private lateinit var viewModel: WeListViewModel
+    private var IMAGE_CREATE_LIST = "android.resource://id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist/drawable/img_placeholder"
     private var youtubeID = ""
+    private var youtubeThumbnail = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -121,7 +123,8 @@ class CreateListFragment : Fragment() {
             editTextNotes.text.toString(),
             editTextPrice.text.toString(),
             editTextLink.text.toString(),
-            youtubeID)
+            youtubeID,
+            youtubeThumbnail)
 
         viewModel.insert(newWeList)
         Toast.makeText(activity,"New list", Toast.LENGTH_SHORT).show()
@@ -140,7 +143,9 @@ class CreateListFragment : Fragment() {
         var link2 = "youtube.com/watch?v="
         if (userInput.contains(link2)){
             youtubeID = userInput.substringAfter(delimiter = "=")
+            youtubeThumbnail = "https://img.youtube.com/vi/$youtubeID/hqdefault.jpg"
             Log.d("ini yang di save", youtubeID)
+            Log.d("ini yang di save juga", youtubeThumbnail)
         } else {
             Toast.makeText(activity,"Please, only put youtube link!", Toast.LENGTH_SHORT).show()
         }

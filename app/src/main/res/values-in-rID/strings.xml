@@ -15,4 +15,5 @@
     <string name="choose_picture">Pilih Gambar</string>
     <string name="submit">Kirim</string>
     <string name="delete_button">Hapus Wishlist</string>
+    <string name="play_video">Mulai Video</string>
 </resources>

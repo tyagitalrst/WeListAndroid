@@ -30,12 +30,13 @@ class DetailFragment : Fragment() {
 
     companion object {
         fun newInstance() = DetailFragment()
+        private var VIDEO_ID = ""
+        private var THUMBNAIL = ""
     }
 
     private lateinit var viewModel: WeListViewModel
     private var weListId = 0
-    private var API_KEY = "AIzaSyD331YQUKyZK_sY7LSXxFUO1Q8SoUjB6GM"
-    private var VIDEO_ID = ""
+    private var API_KEY = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +57,15 @@ class DetailFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(WeListViewModel::class.java)
         observeViewModel()
 
+
+        val requestOptions = RequestOptions()
+            .placeholder(R.drawable.img_placeholder)
+            .override(300, 200)
+        Glide.with(this)
+            .load(THUMBNAIL)
+            .apply(requestOptions)
+            .into(thumbnailYoutube)
+
         buttonDelete.setOnClickListener {
             viewModel.deleteList(weListId + 1)
             Navigation.findNavController(it)
@@ -63,23 +73,11 @@ class DetailFragment : Fragment() {
         }
 
         button.setOnClickListener {
-            Log.d("youtubeid", VIDEO_ID)
             val intent = YouTubeStandalonePlayer.createVideoIntent(activity, API_KEY, VIDEO_ID)
             startActivity(intent)
         }
 
 
-        Log.d("youtubeid detail", VIDEO_ID)
-//
-//        val imageUrl = "http://img.youtube.com/vi/JPSqzS_V4Ic/0.jpg"
-        val imageUrl = "https://img.youtube.com/vi/JPSqzS_V4Ic/hqdefault.jpg"
-
-        val requestOptions = RequestOptions()
-            .placeholder(R.drawable.img_placeholder)
-        Glide.with(this)
-            .load(imageUrl)
-            .apply(requestOptions)
-            .into(thumbnailYoutube)
     }
 
     fun observeViewModel() {
@@ -92,11 +90,11 @@ class DetailFragment : Fragment() {
                 priceContentDetails.text = weList.price
                 linkContentDetails.text = weList.link
                 VIDEO_ID = weList.youtubeId
+                THUMBNAIL = weList.youtubeThumbnail
             }
         })
 
     }
-
 
 }
 

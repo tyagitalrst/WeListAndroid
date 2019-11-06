@@ -11,7 +11,8 @@ data class WeList(
     var notes: String,
     var price: String,
     var link: String,
-    var youtubeId: String
+    var youtubeId: String,
+    var youtubeThumbnail: String
 ) {
 
     @PrimaryKey(autoGenerate = true)
