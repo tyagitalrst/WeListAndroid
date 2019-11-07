@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "welist_table")
-data class WeList(
+data class WeListLongterm(
     var image: String,
     var title: String,
     var notes: String,

@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">WeList</string>
     <string name="action_settings">Pengaturan</string>
+    <string name="action_fulfilled">Terpenuhi</string>
+    <string name="action_favorite">Favorit</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hallo fragment kosong</string>
@@ -11,9 +13,13 @@
     <string name="title">Judul</string>
     <string name="notes">Catatan</string>
     <string name="price">Harga</string>
-    <string name="link">Tautan Youtube</string>
+    <string name="link">Video Ulasan dari Youtube</string>
     <string name="choose_picture">Pilih Gambar</string>
     <string name="submit">Kirim</string>
-    <string name="delete_button">Hapus Wishlist</string>
+    <string name="delete_button">Hapus Daftar Keinginan</string>
     <string name="play_video">Mulai Video</string>
+    <string name="new_wishlist">Menambahkan Daftar Keinginan Baru</string>
+    <string name="wishlist_type">Tipe Daftar Keinginan</string>
+    <string name="short_term">Daftar Keinginan Jangka Pendek</string>
+    <string name="long_term">Daftar Keinginan Jangka Panjang</string>
 </resources>

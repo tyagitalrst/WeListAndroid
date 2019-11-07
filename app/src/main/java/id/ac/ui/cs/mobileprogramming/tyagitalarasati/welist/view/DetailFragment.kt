@@ -36,7 +36,7 @@ class DetailFragment : Fragment() {
 
     private lateinit var viewModel: WeListViewModel
     private var weListId = 0
-    private var API_KEY = ""
+    private var API_KEY = "AIzaSyD331YQUKyZK_sY7LSXxFUO1Q8SoUjB6GM"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +57,8 @@ class DetailFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(WeListViewModel::class.java)
         observeViewModel()
 
+        //Log.e("thumbnail", THUMBNAIL)
+
 
         val requestOptions = RequestOptions()
             .placeholder(R.drawable.img_placeholder)
@@ -72,7 +74,8 @@ class DetailFragment : Fragment() {
                 .navigate(DetailFragmentDirections.actionListFragment())
         }
 
-        button.setOnClickListener {
+
+        playButton.setOnClickListener {
             val intent = YouTubeStandalonePlayer.createVideoIntent(activity, API_KEY, VIDEO_ID)
             startActivity(intent)
         }
@@ -95,7 +98,6 @@ class DetailFragment : Fragment() {
         })
 
     }
-
 }
 
 

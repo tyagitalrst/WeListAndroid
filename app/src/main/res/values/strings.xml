@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">WeList</string>
     <string name="action_settings">Settings</string>
+    <string name="action_fulfilled">Fulfilled</string>
+    <string name="action_favorite">Favorite</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -10,9 +12,13 @@
     <string name="title">Title</string>
     <string name="notes">Notes</string>
     <string name="price">Price</string>
-    <string name="link">Youtube Link</string>
+    <string name="link">Video Review from Youtube</string>
     <string name="choose_picture">Choose Picture</string>
     <string name="submit">Submit</string>
     <string name="delete_button">Delete Wishlist</string>
     <string name="play_video">Play Video</string>
+    <string name="new_wishlist">Added a New Wish List</string>
+    <string name="wishlist_type">Wish List Type</string>
+    <string name="short_term">Short Term Wish List</string>
+    <string name="long_term">Long Term Wish List</string>
 </resources>

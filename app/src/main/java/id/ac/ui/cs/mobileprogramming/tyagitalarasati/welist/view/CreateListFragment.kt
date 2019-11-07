@@ -76,17 +76,11 @@ class CreateListFragment : Fragment() {
         }
 
         buttonSubmit.setOnClickListener{
-            checkValidLinkYoutube()
-            if (editTextTitle.text.toString().trim().isBlank()
-                || editTextNotes.text.toString().trim().isBlank()) {
-                Toast.makeText(activity,"Can not insert empty note!", Toast.LENGTH_SHORT).show()
-            } else {
+            if (requiredTitle() && requiredNotes() && requiredPrice() && requiredLinkYoutube()) {
                 saveList()
                 Navigation.findNavController(it)
                     .navigate(CreateListFragmentDirections.actionResultCreate())
-
             }
-
         }
 
     }
@@ -116,6 +110,7 @@ class CreateListFragment : Fragment() {
     }
 
 
+
     private fun saveList() {
         val newWeList = WeList(
             IMAGE_CREATE_LIST,
@@ -127,7 +122,7 @@ class CreateListFragment : Fragment() {
             youtubeThumbnail)
 
         viewModel.insert(newWeList)
-        Toast.makeText(activity,"New list", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity,R.string.new_wishlist, Toast.LENGTH_SHORT).show()
     }
 
     private fun pickImageFromGallery() {
@@ -137,18 +132,67 @@ class CreateListFragment : Fragment() {
     }
 
 
-    private fun checkValidLinkYoutube() {
-        var userInput = editTextLink.text.toString()
-        var link1 = "youtu.be/"
-        var link2 = "youtube.com/watch?v="
-        if (userInput.contains(link2)){
-            youtubeID = userInput.substringAfter(delimiter = "=")
-            youtubeThumbnail = "https://img.youtube.com/vi/$youtubeID/hqdefault.jpg"
-            Log.d("ini yang di save", youtubeID)
-            Log.d("ini yang di save juga", youtubeThumbnail)
+    private fun requiredLinkYoutube(): Boolean {
+        val userInput = editTextLink.text.toString()
+        val link1 = "youtu.be/"
+        val link2 = "youtube.com/watch?v="
+
+        if (userInput.trim().isBlank()) {
+            editTextLink.setError("This field is required")
+            editTextLink.requestFocus()
+            return false
         } else {
-            Toast.makeText(activity,"Please, only put youtube link!", Toast.LENGTH_SHORT).show()
+
+            if (userInput.contains(link2)) {
+                youtubeID = userInput.substringAfter(delimiter = "=")
+                youtubeThumbnail = "https://img.youtube.com/vi/$youtubeID/hqdefault.jpg"
+                return true
+            } else if (userInput.contains(link1)) {
+                youtubeID = userInput.substringAfter(delimiter = "=")
+                youtubeThumbnail = "https://img.youtube.com/vi/$youtubeID/hqdefault.jpg"
+                return true
+            } else {
+                editTextLink.setError("Please only put valid youtube video's link")
+                return false
+            }
         }
     }
+
+    private fun requiredTitle(): Boolean {
+        val userInput = editTextTitle.text.toString()
+
+        if (userInput.trim().isBlank()) {
+            editTextTitle.setError("This field is required")
+            editTextTitle.requestFocus()
+            return false
+        }
+
+        return true
+    }
+
+    private fun requiredNotes(): Boolean {
+        val userInput = editTextNotes.text.toString()
+
+        if (userInput.trim().isBlank()) {
+            editTextNotes.setError("This field is required")
+            editTextNotes.requestFocus()
+            return false
+        }
+
+        return true
+    }
+
+    private fun requiredPrice(): Boolean {
+        val userInput = editTextPrice.text.toString()
+
+        if (userInput.trim().isBlank()) {
+            editTextPrice.setError("This field is required")
+            editTextPrice.requestFocus()
+            return false
+        }
+
+        return true
+    }
+
 
 }

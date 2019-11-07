@@ -3,6 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.MainActivity">
     <item
+        android:id="@+id/action_favorite"
+        android:icon="@drawable/heart"
+        android:orderInCategory="100"
+        android:title="@string/action_favorite"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_fulfilled"
+        android:icon="@drawable/verified"
+        android:orderInCategory="200"
+        android:title="@string/action_fulfilled"
+        app:showAsAction="ifRoom"></item>
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
