@@ -47,9 +47,7 @@ class DetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         arguments?.let {
-            weListId = id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.DetailFragmentArgs.fromBundle(
-                it
-            ).id
+            weListId = DetailFragmentArgs.fromBundle(it).id
         }
 
 
@@ -62,21 +60,12 @@ class DetailFragment : Fragment() {
             .placeholder(R.drawable.img_placeholder)
             .override(300, 200)
         Glide.with(this)
-            .load(id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.DetailFragment.Companion.THUMBNAIL)
+            .load(THUMBNAIL)
             .apply(requestOptions)
             .into(thumbnailYoutube)
 
-        buttonDelete.setOnClickListener {
-            viewModel.deleteList(weListId + 1)
-            Navigation.findNavController(it)
-                .navigate(id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.DetailFragmentDirections.actionListFragment())
-        }
-
-
         playButton.setOnClickListener {
-            val intent = YouTubeStandalonePlayer.createVideoIntent(activity, API_KEY,
-                id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.DetailFragment.Companion.VIDEO_ID
-            )
+            val intent = YouTubeStandalonePlayer.createVideoIntent(activity, API_KEY, VIDEO_ID)
             startActivity(intent)
         }
 
@@ -92,8 +81,8 @@ class DetailFragment : Fragment() {
                 notesContentDetails.text = weList.notes
                 priceContentDetails.text = weList.price
                 linkContentDetails.text = weList.link
-                id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.DetailFragment.Companion.VIDEO_ID = weList.youtubeId
-                id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.DetailFragment.Companion.THUMBNAIL = weList.youtubeThumbnail
+                VIDEO_ID = weList.youtubeId
+                THUMBNAIL = weList.youtubeThumbnail
             }
         })
 

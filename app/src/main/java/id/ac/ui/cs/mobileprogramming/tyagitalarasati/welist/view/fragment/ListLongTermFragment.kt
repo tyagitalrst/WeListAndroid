@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.adapter.WeListLongTermAdapter
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeListLongTerm
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.WeListViewModel
@@ -22,14 +23,12 @@ import kotlinx.android.synthetic.main.fragment_list.*
 class ListLongTermFragment : Fragment() {
 
     companion object {
-        fun newInstance() =
-            ListLongTermFragment()
+        fun newInstance() = ListLongTermFragment()
     }
 
 
     private lateinit var viewModel: WeListViewModel
-    private val weListLongTermAdapter =
-        id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.WeListLongTermAdapter()
+    private val weListLongTermAdapter = WeListLongTermAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,16 +50,38 @@ class ListLongTermFragment : Fragment() {
 
         observeViewModel()
 
+        buttonDelete.setOnClickListener {
+            viewModel.deleteAllLongTerm()
+        }
+
         floatingActionButton.setOnClickListener{
             Navigation.findNavController(it)
-                .navigate(id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.ListLongTermFragmentDirections.actionCreateListLong())
+                .navigate(ListLongTermFragmentDirections.actionCreateListLong())
         }
 
     }
 
     fun observeViewModel() {
         viewModel.getAllWeListLongTerm().observe(this,
-            Observer<List<WeListLongTerm>> { t -> weListLongTermAdapter.setWeListsLongTerm(t!!) })
+            Observer<List<WeListLongTerm>> { t ->
+                weListLongTermAdapter.setWeListsLongTerm(t!!)
+                setEmptyState(weListLongTermAdapter.itemCount)
+            })
+
+    }
+
+    private fun setEmptyState(length: Int) {
+
+        if (length > 0) {
+            weLists.visibility = View.VISIBLE
+            emptyState.visibility = View.GONE
+            buttonDelete.visibility = View.VISIBLE
+        } else {
+            weLists.visibility = View.GONE
+            emptyState.visibility = View.VISIBLE
+            buttonDelete.visibility = View.GONE
+        }
+
     }
 
 

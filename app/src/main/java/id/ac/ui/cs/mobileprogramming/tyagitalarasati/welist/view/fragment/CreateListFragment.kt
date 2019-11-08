@@ -40,6 +40,7 @@ class CreateListFragment : Fragment() {
     private var youtubeID = ""
     private var youtubeThumbnail = ""
     private var typeWishList = ""
+    private var price = "Rp "
 
 
 
@@ -66,9 +67,7 @@ class CreateListFragment : Fragment() {
 
                     //permission denied
                     val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    requestPermissions(permissions,
-                        id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.CreateListFragment.Companion.PERMISSION_CODE
-                    );
+                    requestPermissions(permissions,PERMISSION_CODE);
                 }
                 else{
                     //permission already granted
@@ -91,7 +90,7 @@ class CreateListFragment : Fragment() {
            if (requiredTitle() && requiredNotes() && requiredPrice() && requiredLinkYoutube()) {
                if (typeWishList.contentEquals("long")) saveListLong() else saveListShort()
                 Navigation.findNavController(it)
-                    .navigate(id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.CreateListFragmentDirections.actionCreatetoDashboard())
+                    .navigate(CreateListFragmentDirections.actionCreatetoDashboard())
             }
         }
 
@@ -100,7 +99,7 @@ class CreateListFragment : Fragment() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when(requestCode){
-            id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.CreateListFragment.Companion.PERMISSION_CODE -> {
+            PERMISSION_CODE -> {
                 if (grantResults.size >0 && grantResults[0] ==
                     PackageManager.PERMISSION_GRANTED){
                     //permission from popup granted
@@ -108,14 +107,14 @@ class CreateListFragment : Fragment() {
                 }
                 else{
                     //permission from popup denied
-                    Toast.makeText(activity, "Permission denied", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, R.string.permission, Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Activity.RESULT_OK && requestCode == id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.CreateListFragment.Companion.IMAGE_PICK_CODE){
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
             IMAGE_CREATE_LIST = (data?.data).toString()
             imageViewCreate.setImageURI(data?.data)
         }
@@ -124,11 +123,12 @@ class CreateListFragment : Fragment() {
 
 
     private fun saveListShort() {
+        price += editTextPrice.text.toString()
         val newWeList = WeList(
             IMAGE_CREATE_LIST,
             editTextTitle.text.toString(),
             editTextNotes.text.toString(),
-            editTextPrice.text.toString(),
+            price,
             editTextLink.text.toString(),
             youtubeID,
             youtubeThumbnail
@@ -139,11 +139,12 @@ class CreateListFragment : Fragment() {
     }
 
     private fun saveListLong() {
+        price += editTextPrice.text.toString()
         val newWeList = WeListLongTerm(
             IMAGE_CREATE_LIST,
             editTextTitle.text.toString(),
             editTextNotes.text.toString(),
-            editTextPrice.text.toString(),
+            price,
             editTextLink.text.toString(),
             youtubeID,
             youtubeThumbnail
@@ -157,9 +158,7 @@ class CreateListFragment : Fragment() {
     private fun pickImageFromGallery() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
-        startActivityForResult(intent,
-            id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.CreateListFragment.Companion.IMAGE_PICK_CODE
-        )
+        startActivityForResult(intent, IMAGE_PICK_CODE)
     }
 
 

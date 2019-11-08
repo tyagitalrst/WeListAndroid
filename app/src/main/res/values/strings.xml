@@ -13,10 +13,15 @@
     <string name="link">Video Review from Youtube</string>
     <string name="choose_picture">Choose Picture</string>
     <string name="submit">Submit</string>
-    <string name="delete_button">Delete Wishlist</string>
+    <string name="delete_button">Delete All Wishlist</string>
     <string name="play_video">Play Video</string>
     <string name="new_wishlist">Added a New Wish List</string>
     <string name="wishlist_type">Wish List Type</string>
     <string name="short_term">Short Term Wish List</string>
     <string name="long_term">Long Term Wish List</string>
+    <string name="empty_state">Ooops! Empty</string>
+    <string name="empty_state_2">You dont have any wish list</string>
+    <string name="quotes_of_the_day">Motivational Quotes</string>
+    <string name="permission">Permission denied</string>
+    <string name="required">This field is required</string>
 </resources>

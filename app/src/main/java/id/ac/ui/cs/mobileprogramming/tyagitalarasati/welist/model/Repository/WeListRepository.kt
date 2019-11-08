@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model
+package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.Repository
 
 import android.app.Application
 import android.os.AsyncTask
@@ -38,11 +38,15 @@ class WeListRepository(application: Application) {
 
 
     fun insert(weList: WeList) {
-        val insertWeListAsyncTask = InsertWeListAsyncTask(weListDao).execute(weList)
+        val insertWeListAsyncTask = InsertWeListAsyncTask(
+            weListDao
+        ).execute(weList)
     }
 
-    fun deleteList(listId: Int) {
-        val deleteWeListAsyncTask = DeleteWeListAsyncTask(weListDao).execute(listId)
+    fun deleteList() {
+        val deleteWeListAsyncTask = DeleteWeListAsyncTask(
+            weListDao
+        ).execute()
     }
 
 
@@ -56,11 +60,15 @@ class WeListRepository(application: Application) {
     }
 
     fun insertLongTerm(weListLong: WeListLongTerm) {
-        val insertWeListLongAsyncTask = InsertWeListLongAsyncTask(weListLongTermDao).execute(weListLong)
+        val insertWeListLongAsyncTask = InsertWeListLongAsyncTask(
+            weListLongTermDao
+        ).execute(weListLong)
     }
 
-    fun deleteLongTermList(listId: Int) {
-        val deleteWeListLongAsyncTask = DeleteWeListLongAsyncTask(weListLongTermDao).execute(listId)
+    fun deleteLongTermList() {
+        val deleteWeListLongAsyncTask = DeleteWeListLongAsyncTask(
+            weListLongTermDao
+        ).execute()
     }
 
 
@@ -84,10 +92,10 @@ class WeListRepository(application: Application) {
     }
 
 
-    private class DeleteWeListAsyncTask(val weListDao: WeListDao) : AsyncTask<Int, Unit, Unit>() {
+    private class DeleteWeListAsyncTask(val weListDao: WeListDao) : AsyncTask<Unit, Unit, Unit>() {
 
-        override fun doInBackground(vararg p0: Int?) {
-            weListDao.deleteList(p0[0]!!)
+        override fun doInBackground(vararg p0: Unit?) {
+            weListDao.deleteAllList()
         }
     }
 
@@ -101,10 +109,10 @@ class WeListRepository(application: Application) {
     }
 
 
-    private class DeleteWeListLongAsyncTask(val weListLongDao: WeListLongTermDao) : AsyncTask<Int, Unit, Unit>() {
+    private class DeleteWeListLongAsyncTask(val weListLongDao: WeListLongTermDao) : AsyncTask<Unit, Unit, Unit>() {
 
-        override fun doInBackground(vararg p0: Int?) {
-            weListLongDao.deleteLongTermList(p0[0]!!)
+        override fun doInBackground(vararg p0: Unit?) {
+            weListLongDao.deleteAllLongTerm()
         }
     }
 

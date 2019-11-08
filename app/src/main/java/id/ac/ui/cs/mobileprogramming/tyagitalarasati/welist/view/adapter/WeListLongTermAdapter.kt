@@ -8,7 +8,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeListLongTerm
-import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.ListLongTermFragmentDirections
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.ListLongTermFragmentDirections
 import kotlinx.android.synthetic.main.content_list.view.*
 
 class WeListLongTermAdapter: RecyclerView.Adapter<WeListLongTermAdapter.WeListLongTermViewHolder>() {
@@ -21,9 +21,7 @@ class WeListLongTermAdapter: RecyclerView.Adapter<WeListLongTermAdapter.WeListLo
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeListLongTermViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.content_list, parent, false)
-        return WeListLongTermViewHolder(
-            view
-        )
+        return WeListLongTermViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: WeListLongTermViewHolder, position: Int) {

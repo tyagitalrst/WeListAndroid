@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeList
-import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.WeListRepository
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.Repository.WeListRepository
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeListLongTerm
 
 class WeListViewModel(application: Application) : AndroidViewModel(application) {
@@ -21,8 +21,8 @@ class WeListViewModel(application: Application) : AndroidViewModel(application) 
         repository.insert(weList)
     }
 
-    fun deleteList(listId: Int) {
-        repository.deleteList(listId)
+    fun deleteAllList() {
+        repository.deleteList()
     }
 
     fun detailList(listId: Int): LiveData<WeList> {
@@ -39,8 +39,8 @@ class WeListViewModel(application: Application) : AndroidViewModel(application) 
         repository.insertLongTerm(weListLong)
     }
 
-    fun deleteLongTermList(listId: Int) {
-        repository.deleteLongTermList(listId)
+    fun deleteAllLongTerm() {
+        repository.deleteLongTermList()
     }
 
 

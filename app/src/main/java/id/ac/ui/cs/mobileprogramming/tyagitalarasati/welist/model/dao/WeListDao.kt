@@ -12,8 +12,8 @@ interface WeListDao {
     @Insert
     fun insert(weList: WeList)
 
-    @Query("DELETE FROM welist_table WHERE id=:listId")
-    fun deleteList(listId: Int)
+    @Query("DELETE FROM welist_table")
+    fun deleteAllList()
 
     @Query("SELECT * FROM welist_table WHERE id=:listId")
     fun detailList(listId: Int): LiveData<WeList>

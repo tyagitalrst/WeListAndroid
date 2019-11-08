@@ -14,10 +14,16 @@
     <string name="link">Video Ulasan dari Youtube</string>
     <string name="choose_picture">Pilih Gambar</string>
     <string name="submit">Kirim</string>
-    <string name="delete_button">Hapus Daftar Keinginan</string>
+    <string name="delete_button">Hapus Semua Daftar Keinginan</string>
     <string name="play_video">Mulai Video</string>
     <string name="new_wishlist">Menambahkan Daftar Keinginan Baru</string>
     <string name="wishlist_type">Tipe Daftar Keinginan</string>
     <string name="short_term">Daftar Keinginan Jangka Pendek</string>
     <string name="long_term">Daftar Keinginan Jangka Panjang</string>
+    <string name="empty_state">Ooops! Kosong</string>
+    <string name="empty_state_2">Kamu tidak punya daftar keinginan</string>
+    <string name="quotes_of_the_day">Quotes Motivasi</string>
+    <string name="permission">Izin Ditolak</string>
+    <string name="required">Kolom ini Harus Diisi</string>
+
 </resources>

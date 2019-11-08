@@ -2,6 +2,7 @@ package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeList
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.WeListViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.adapter.*
 
 /**
  * A simple [Fragment] subclass.
@@ -22,13 +24,11 @@ import kotlinx.android.synthetic.main.fragment_list.*
 class ListFragment : Fragment() {
 
     companion object {
-        fun newInstance() =
-            ListFragment()
+        fun newInstance() = ListFragment()
     }
 
     private lateinit var viewModel: WeListViewModel
-    private val weListAdapter =
-        id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.WeListAdapter()
+    private val weListAdapter = WeListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,9 +49,13 @@ class ListFragment : Fragment() {
 
         observeViewModel()
 
+        buttonDelete.setOnClickListener {
+            viewModel.deleteAllList()
+        }
+
         floatingActionButton.setOnClickListener{
             Navigation.findNavController(it)
-                .navigate(id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.ListFragmentDirections.actionCreateList())
+                .navigate(ListFragmentDirections.actionCreateList())
         }
 
 
@@ -60,8 +64,24 @@ class ListFragment : Fragment() {
 
     fun observeViewModel() {
         viewModel.getAllWeList().observe(this,
-            Observer<List<WeList>> { t -> weListAdapter.setWeLists(t!!) })
+            Observer<List<WeList>> { t ->
+                weListAdapter.setWeLists(t!!)
+                setEmptyState(weListAdapter.itemCount)
+            })
     }
 
+
+    private fun setEmptyState(length: Int) {
+
+        if (length > 0) {
+            weLists.visibility = View.VISIBLE
+            buttonDelete.visibility = View.VISIBLE
+            emptyState.visibility = View.GONE
+        } else {
+            weLists.visibility = View.GONE
+            emptyState.visibility = View.VISIBLE
+            buttonDelete.visibility = View.GONE
+        }
+    }
 
 }
