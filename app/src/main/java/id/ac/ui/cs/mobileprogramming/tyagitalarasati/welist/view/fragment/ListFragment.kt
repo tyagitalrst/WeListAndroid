@@ -49,10 +49,6 @@ class ListFragment : Fragment() {
 
         observeViewModel()
 
-        buttonDelete.setOnClickListener {
-            viewModel.deleteAllList()
-        }
-
         floatingActionButton.setOnClickListener{
             Navigation.findNavController(it)
                 .navigate(ListFragmentDirections.actionCreateList())
@@ -75,12 +71,10 @@ class ListFragment : Fragment() {
 
         if (length > 0) {
             weLists.visibility = View.VISIBLE
-            buttonDelete.visibility = View.VISIBLE
             emptyState.visibility = View.GONE
         } else {
             weLists.visibility = View.GONE
             emptyState.visibility = View.VISIBLE
-            buttonDelete.visibility = View.GONE
         }
     }
 

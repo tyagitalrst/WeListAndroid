@@ -50,10 +50,6 @@ class ListLongTermFragment : Fragment() {
 
         observeViewModel()
 
-        buttonDelete.setOnClickListener {
-            viewModel.deleteAllLongTerm()
-        }
-
         floatingActionButton.setOnClickListener{
             Navigation.findNavController(it)
                 .navigate(ListLongTermFragmentDirections.actionCreateListLong())
@@ -75,11 +71,9 @@ class ListLongTermFragment : Fragment() {
         if (length > 0) {
             weLists.visibility = View.VISIBLE
             emptyState.visibility = View.GONE
-            buttonDelete.visibility = View.VISIBLE
         } else {
             weLists.visibility = View.GONE
             emptyState.visibility = View.VISIBLE
-            buttonDelete.visibility = View.GONE
         }
 
     }

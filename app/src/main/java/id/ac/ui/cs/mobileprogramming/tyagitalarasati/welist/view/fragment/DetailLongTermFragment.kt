@@ -42,7 +42,7 @@ class DetailLongTermFragment: Fragment() {
             super.onActivityCreated(savedInstanceState)
 
             arguments?.let {
-                weListId = DetailFragmentArgs.fromBundle(it).id
+                weListId = DetailLongTermFragmentArgs.fromBundle(it).id
             }
 
 
