@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view
+package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment
 
 
 import android.os.Bundle
@@ -6,13 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import kotlinx.android.synthetic.main.fragment_dashboard.*
-import kotlinx.android.synthetic.main.fragment_list.*
 
 /**
  * A simple [Fragment] subclass.
@@ -30,11 +27,20 @@ class DashboardFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        shortTerm.setOnClickListener{
+        createList.setOnClickListener{
             Navigation.findNavController(it)
-                .navigate(DashboardFragmentDirections.actionDashtoList())
+                .navigate(id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.DashboardFragmentDirections.actionDashboardtoCreate())
         }
 
+        shortTerm.setOnClickListener{
+            Navigation.findNavController(it)
+                .navigate(id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.DashboardFragmentDirections.actionDashtoList())
+        }
+
+        longTerm.setOnClickListener{
+            Navigation.findNavController(it)
+                .navigate(id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.DashboardFragmentDirections.actionDashtoLongList())
+        }
 
     }
 

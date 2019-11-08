@@ -18,7 +18,7 @@
             android:background="@color/brokenWhite"
             app:layout_constraintBottom_toTopOf="@+id/editTextTitle"
             app:layout_constraintTop_toTopOf="@+id/editTextTitle"
-            tools:context=".view.CreateListFragment">
+            tools:context=".view.fragment.CreateListFragment">
 
             <TextView
                 android:id="@+id/newItem"
@@ -199,6 +199,7 @@
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/blue"
                     android:text="@string/short_term"
+                    android:checked="true"
                     android:textColor="@color/orange"
                     android:textSize="12sp"
                     tools:layout_editor_absoluteX="14dp"

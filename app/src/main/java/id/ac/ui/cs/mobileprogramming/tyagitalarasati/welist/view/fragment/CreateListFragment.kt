@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view
+package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment
 
 
 import android.Manifest
@@ -16,11 +16,11 @@ import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeList
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeListLongTerm
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
-import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.WeList
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.WeListViewModel
 import kotlinx.android.synthetic.main.fragment_create_list.*
-import android.util.Log
 
 
 /**
@@ -29,7 +29,8 @@ import android.util.Log
 class CreateListFragment : Fragment() {
 
     companion object {
-        fun newInstance() = CreateListFragment()
+        fun newInstance() =
+            CreateListFragment()
         private val IMAGE_PICK_CODE = 1000
         private val PERMISSION_CODE = 1001
     }
@@ -38,6 +39,8 @@ class CreateListFragment : Fragment() {
     private var IMAGE_CREATE_LIST = "android.resource://id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist/drawable/img_placeholder"
     private var youtubeID = ""
     private var youtubeThumbnail = ""
+    private var typeWishList = ""
+
 
 
     override fun onCreateView(
@@ -63,7 +66,9 @@ class CreateListFragment : Fragment() {
 
                     //permission denied
                     val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    requestPermissions(permissions, PERMISSION_CODE);
+                    requestPermissions(permissions,
+                        id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.CreateListFragment.Companion.PERMISSION_CODE
+                    );
                 }
                 else{
                     //permission already granted
@@ -75,11 +80,18 @@ class CreateListFragment : Fragment() {
             }
         }
 
+
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            if (R.id.longButton == checkedId) typeWishList = "long" else typeWishList = "short"
+
+        }
+
+
         buttonSubmit.setOnClickListener{
-            if (requiredTitle() && requiredNotes() && requiredPrice() && requiredLinkYoutube()) {
-                saveList()
+           if (requiredTitle() && requiredNotes() && requiredPrice() && requiredLinkYoutube()) {
+               if (typeWishList.contentEquals("long")) saveListLong() else saveListShort()
                 Navigation.findNavController(it)
-                    .navigate(CreateListFragmentDirections.actionResultCreate())
+                    .navigate(id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.CreateListFragmentDirections.actionCreatetoDashboard())
             }
         }
 
@@ -88,7 +100,7 @@ class CreateListFragment : Fragment() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when(requestCode){
-            PERMISSION_CODE -> {
+            id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.CreateListFragment.Companion.PERMISSION_CODE -> {
                 if (grantResults.size >0 && grantResults[0] ==
                     PackageManager.PERMISSION_GRANTED){
                     //permission from popup granted
@@ -103,7 +115,7 @@ class CreateListFragment : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
+        if (resultCode == Activity.RESULT_OK && requestCode == id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.CreateListFragment.Companion.IMAGE_PICK_CODE){
             IMAGE_CREATE_LIST = (data?.data).toString()
             imageViewCreate.setImageURI(data?.data)
         }
@@ -111,7 +123,7 @@ class CreateListFragment : Fragment() {
 
 
 
-    private fun saveList() {
+    private fun saveListShort() {
         val newWeList = WeList(
             IMAGE_CREATE_LIST,
             editTextTitle.text.toString(),
@@ -119,16 +131,35 @@ class CreateListFragment : Fragment() {
             editTextPrice.text.toString(),
             editTextLink.text.toString(),
             youtubeID,
-            youtubeThumbnail)
+            youtubeThumbnail
+        )
 
         viewModel.insert(newWeList)
         Toast.makeText(activity,R.string.new_wishlist, Toast.LENGTH_SHORT).show()
     }
 
+    private fun saveListLong() {
+        val newWeList = WeListLongTerm(
+            IMAGE_CREATE_LIST,
+            editTextTitle.text.toString(),
+            editTextNotes.text.toString(),
+            editTextPrice.text.toString(),
+            editTextLink.text.toString(),
+            youtubeID,
+            youtubeThumbnail
+        )
+
+        viewModel.insertLongTerm(newWeList)
+        Toast.makeText(activity,R.string.new_wishlist, Toast.LENGTH_SHORT).show()
+    }
+
+
     private fun pickImageFromGallery() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_CODE)
+        startActivityForResult(intent,
+            id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.CreateListFragment.Companion.IMAGE_PICK_CODE
+        )
     }
 
 
@@ -148,7 +179,7 @@ class CreateListFragment : Fragment() {
                 youtubeThumbnail = "https://img.youtube.com/vi/$youtubeID/hqdefault.jpg"
                 return true
             } else if (userInput.contains(link1)) {
-                youtubeID = userInput.substringAfter(delimiter = "=")
+                youtubeID = userInput.substringAfterLast(delimiter = "/")
                 youtubeThumbnail = "https://img.youtube.com/vi/$youtubeID/hqdefault.jpg"
                 return true
             } else {

@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view
+package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.activity
 
 import android.app.AlarmManager
 import android.app.Notification
@@ -12,6 +12,7 @@ import android.os.SystemClock
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.util.NotificationPublisher
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -26,7 +27,8 @@ class SplashScreenActivity : AppCompatActivity() {
         scheduleNotification(getNotification( "Welcome to WeList. Let's create your wishlist!" ) , 5000 )
 
         Handler().postDelayed({
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this,
+                MainActivity::class.java))
             finish()
         }, SPLASH_TIME_OUT)
 

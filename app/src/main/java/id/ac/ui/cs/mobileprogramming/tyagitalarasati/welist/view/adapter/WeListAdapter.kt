@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view
+package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.adapter
 
 import android.net.Uri
 import android.view.LayoutInflater
@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
-import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.WeList
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeList
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.ListFragmentDirections
 import kotlinx.android.synthetic.main.content_list.view.*
 
 
@@ -21,7 +22,9 @@ class WeListAdapter: RecyclerView.Adapter<WeListAdapter.WeListViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.content_list, parent, false)
-        return WeListViewHolder(view)
+        return WeListViewHolder(
+            view
+        )
     }
 
     override fun onBindViewHolder(holder: WeListViewHolder, position: Int) {

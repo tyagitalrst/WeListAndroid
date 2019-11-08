@@ -1,9 +1,10 @@
-package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model
+package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeList
 
 @Dao
 interface WeListDao {

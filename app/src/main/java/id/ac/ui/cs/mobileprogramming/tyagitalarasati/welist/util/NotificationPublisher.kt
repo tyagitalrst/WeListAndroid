@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view
+package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.util
 
 import android.app.Notification
 import android.app.NotificationManager

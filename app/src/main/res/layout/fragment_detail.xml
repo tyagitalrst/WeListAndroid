@@ -14,8 +14,7 @@
             android:layout_height="wrap_content"
             android:background="@color/brokenWhite"
             app:layout_constraintBottom_toBottomOf="@+id/priceDetails"
-            app:layout_constraintTop_toBottomOf="@+id/priceDetails"
-            tools:context=".view.DetailFragment">
+            app:layout_constraintTop_toBottomOf="@+id/priceDetails">
 
             <TextView
                 android:id="@+id/titleDetails"

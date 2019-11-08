@@ -4,11 +4,9 @@
     <string name="action_settings">Pengaturan</string>
     <string name="action_fulfilled">Terpenuhi</string>
     <string name="action_favorite">Favorit</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hallo fragment kosong</string>
-
-    <!--Create New List-->
+    <string name="hello">Hello!</string>
+    <string name="create_wishlist">Buat Daftar Keinginan</string>
     <string name="new_item">Barang Baru</string>
     <string name="title">Judul</string>
     <string name="notes">Catatan</string>

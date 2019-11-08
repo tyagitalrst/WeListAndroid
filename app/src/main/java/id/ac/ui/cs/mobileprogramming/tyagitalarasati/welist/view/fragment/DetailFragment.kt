@@ -1,10 +1,8 @@
-package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view
+package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment
 
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,9 +16,7 @@ import com.google.android.youtube.player.YouTubeStandalonePlayer
 
 
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
-import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.WeList
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.WeListViewModel
-import kotlinx.android.synthetic.main.content_list.*
 import kotlinx.android.synthetic.main.fragment_detail.*
 
 /**
@@ -29,7 +25,8 @@ import kotlinx.android.synthetic.main.fragment_detail.*
 class DetailFragment : Fragment() {
 
     companion object {
-        fun newInstance() = DetailFragment()
+        fun newInstance() =
+            DetailFragment()
         private var VIDEO_ID = ""
         private var THUMBNAIL = ""
     }
@@ -50,33 +47,36 @@ class DetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         arguments?.let {
-            weListId = DetailFragmentArgs.fromBundle(it).id
+            weListId = id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.DetailFragmentArgs.fromBundle(
+                it
+            ).id
         }
 
 
         viewModel = ViewModelProviders.of(this).get(WeListViewModel::class.java)
         observeViewModel()
 
-        //Log.e("thumbnail", THUMBNAIL)
 
 
         val requestOptions = RequestOptions()
             .placeholder(R.drawable.img_placeholder)
             .override(300, 200)
         Glide.with(this)
-            .load(THUMBNAIL)
+            .load(id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.DetailFragment.Companion.THUMBNAIL)
             .apply(requestOptions)
             .into(thumbnailYoutube)
 
         buttonDelete.setOnClickListener {
             viewModel.deleteList(weListId + 1)
             Navigation.findNavController(it)
-                .navigate(DetailFragmentDirections.actionListFragment())
+                .navigate(id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.DetailFragmentDirections.actionListFragment())
         }
 
 
         playButton.setOnClickListener {
-            val intent = YouTubeStandalonePlayer.createVideoIntent(activity, API_KEY, VIDEO_ID)
+            val intent = YouTubeStandalonePlayer.createVideoIntent(activity, API_KEY,
+                id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.DetailFragment.Companion.VIDEO_ID
+            )
             startActivity(intent)
         }
 
@@ -92,8 +92,8 @@ class DetailFragment : Fragment() {
                 notesContentDetails.text = weList.notes
                 priceContentDetails.text = weList.price
                 linkContentDetails.text = weList.link
-                VIDEO_ID = weList.youtubeId
-                THUMBNAIL = weList.youtubeThumbnail
+                id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.DetailFragment.Companion.VIDEO_ID = weList.youtubeId
+                id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.DetailFragment.Companion.THUMBNAIL = weList.youtubeThumbnail
             }
         })
 

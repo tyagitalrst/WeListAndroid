@@ -3,11 +3,9 @@
     <string name="action_settings">Settings</string>
     <string name="action_fulfilled">Fulfilled</string>
     <string name="action_favorite">Favorite</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!--Create New List-->
+    <string name="hello">Hello!</string>
+    <string name="create_wishlist">Create a New Wish List</string>
     <string name="new_item">New Item</string>
     <string name="title">Title</string>
     <string name="notes">Notes</string>

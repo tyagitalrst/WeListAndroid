@@ -1,10 +1,10 @@
-package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model
+package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "welist_table")
-data class WeList(
+@Entity(tableName = "welistlong_table")
+data class WeListLongTerm(
     var image: String,
     var title: String,
     var notes: String,

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.ListFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.ListFragment"
         android:label="ListFragment">
         <action
             android:id="@+id/actionDetailFragment"
@@ -15,39 +15,78 @@
             app:enterAnim="@anim/fragment_fade_enter"/>
         <action
             android:id="@+id/actionCreateList"
-            app:destination="@id/creatListFragment" />
+            app:destination="@id/createListFragment" />
         <action
             android:id="@+id/actionListtoDash"
             app:destination="@id/dashboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.DetailFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.DetailFragment"
         android:label="DetailFragment">
         <action
             android:id="@+id/actionListFragment"
             app:destination="@id/listFragment"
-            app:exitAnim="@anim/fragment_close_exit" />
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@+id/listFragment" />
         <argument
             android:name="id"
             android:defaultValue="0"
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/creatListFragment"
-        android:name="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.CreateListFragment"
-        android:label="CreatListFragment">
+        android:id="@+id/createListFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.CreateListFragment"
+        android:label="CreateListFragment">
         <action
             android:id="@+id/actionResultCreate"
-            app:destination="@id/listFragment" />
+            app:destination="@id/listFragment"
+            app:popUpTo="@+id/listFragment" />
+        <action
+            android:id="@+id/actionCreatetoDashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@+id/dashboardFragment" />
+        <action
+            android:id="@+id/action_createListFragment_to_listLongTermFragment"
+            app:destination="@id/listLongTermFragment"
+            app:popUpTo="@+id/listLongTermFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.DashboardFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.DashboardFragment"
         android:label="DashboardFragment">
         <action
             android:id="@+id/actionDashtoList"
             app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/actionDashtoLongList"
+            app:destination="@id/listLongTermFragment" />
+        <action
+            android:id="@+id/actionDashboardtoCreate"
+            app:destination="@id/createListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listLongTermFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.ListLongTermFragment"
+        android:label="ListLongTermFragment" >
+        <action
+            android:id="@+id/actionCreateListLong"
+            app:destination="@id/createListFragment" />
+        <action
+            android:id="@+id/actionDetailFragmentLong"
+            app:destination="@id/detailLongTermFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailLongTermFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.DetailLongTermFragment"
+        android:label="DetailLongTermFragment" >
+        <action
+            android:id="@+id/actionDetailtoList"
+            app:destination="@id/listLongTermFragment" />
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
 </navigation>

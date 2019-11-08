@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view
+package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment
 
 
 import android.os.Bundle
@@ -10,24 +10,26 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.youtube.player.YouTubeStandalonePlayer
 
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
-import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.WeList
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeListLongTerm
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.WeListViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class ListFragment : Fragment() {
+class ListLongTermFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ListFragment()
+        fun newInstance() =
+            ListLongTermFragment()
     }
 
+
     private lateinit var viewModel: WeListViewModel
-    private val weListAdapter = WeListAdapter()
+    private val weListLongTermAdapter =
+        id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.WeListLongTermAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,30 +39,32 @@ class ListFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(WeListViewModel::class.java)
 
         weLists.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = weListAdapter
+            adapter = weListLongTermAdapter
         }
 
         observeViewModel()
 
         floatingActionButton.setOnClickListener{
             Navigation.findNavController(it)
-                .navigate(ListFragmentDirections.actionCreateList())
+                .navigate(id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.ListLongTermFragmentDirections.actionCreateListLong())
         }
 
-
     }
-
 
     fun observeViewModel() {
-        viewModel.getAllWeList().observe(this,
-            Observer<List<WeList>> { t -> weListAdapter.setWeLists(t!!) })
+        viewModel.getAllWeListLongTerm().observe(this,
+            Observer<List<WeListLongTerm>> { t -> weListLongTermAdapter.setWeListsLongTerm(t!!) })
     }
+
+
+
 
 
 }
