@@ -22,8 +22,6 @@ import kotlinx.android.synthetic.main.fragment_dashboard.*
  */
 class DashboardFragment : Fragment() {
 
-    private val quotesId = (1..4).random()
-
     private lateinit var viewModel: QuotesViewModel
 
     override fun onCreateView(
@@ -58,6 +56,8 @@ class DashboardFragment : Fragment() {
     }
 
     fun observeViewModel() {
+        val quotesId = randomNumber()
+        
         viewModel.getQuotes(quotesId).observe(this, Observer { quotes ->
             quotes?.let {
                 quotesImage.setImageResource(quotes.image)
@@ -66,5 +66,15 @@ class DashboardFragment : Fragment() {
         })
 
     }
+
+    external fun randomNumber(): Int
+
+
+    companion object {
+        init {
+            System.loadLibrary("native-lib")
+        }
+    }
+
 
 }
