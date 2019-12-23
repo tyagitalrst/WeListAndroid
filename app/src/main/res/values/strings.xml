@@ -24,4 +24,6 @@
     <string name="quotes_of_the_day">Motivational Quotes</string>
     <string name="permission">Permission denied</string>
     <string name="required">This field is required</string>
+    <string name="permission_rationale">Permission to access the external storage is needed. Without this permission the app is unable to access your gallery.</string>
+    <string name="permission_required">Permission Required</string>
 </resources>

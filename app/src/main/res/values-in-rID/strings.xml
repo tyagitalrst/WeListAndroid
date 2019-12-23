@@ -25,5 +25,7 @@
     <string name="quotes_of_the_day">Quotes Motivasi</string>
     <string name="permission">Izin Ditolak</string>
     <string name="required">Kolom ini Harus Diisi</string>
+    <string name="permission_rationale">Izin aplikasi untuk mengakses memori eksternal. Tanpa permission ini aplikasi tidak dapat mengakses foto pada galeri.</string>
+    <string name="permission_required">Izin Akses Dibutuhkan</string>
 
 </resources>

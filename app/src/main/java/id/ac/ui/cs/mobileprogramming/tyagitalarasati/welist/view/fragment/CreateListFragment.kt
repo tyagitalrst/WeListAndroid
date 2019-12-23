@@ -3,6 +3,7 @@ package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -21,6 +22,11 @@ import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeListL
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.WeListViewModel
 import kotlinx.android.synthetic.main.fragment_create_list.*
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.activity.MainActivity
+import android.content.DialogInterface
+import androidx.core.app.ActivityCompat
+
+//import sun.jvm.hotspot.utilities.IntArray
 
 
 /**
@@ -65,9 +71,28 @@ class CreateListFragment : Fragment() {
                     let { it1 -> checkSelfPermission(it1, Manifest.permission.WRITE_EXTERNAL_STORAGE) }
                     != PackageManager.PERMISSION_GRANTED){
 
-                    //permission denied
-                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    requestPermissions(permissions,PERMISSION_CODE);
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),
+                            Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+                        val builder = AlertDialog.Builder(activity)
+                        builder.setMessage(R.string.permission_rationale)
+                            .setTitle(R.string.permission_required)
+
+                        builder.setPositiveButton("OK"
+                        ) { dialog, id ->
+                            val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                            requestPermissions(permissions, PERMISSION_CODE);
+                        }
+
+                        val dialog = builder.create()
+                        dialog.show()
+
+
+                    } else {
+                        //permission denied
+                        val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        requestPermissions(permissions, PERMISSION_CODE);
+                    }
                 }
                 else{
                     //permission already granted
@@ -95,7 +120,6 @@ class CreateListFragment : Fragment() {
         }
 
     }
-
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when(requestCode){
