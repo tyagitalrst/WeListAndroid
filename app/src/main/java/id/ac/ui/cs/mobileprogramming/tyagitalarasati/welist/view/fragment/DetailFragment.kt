@@ -1,15 +1,21 @@
 package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment
 
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.net.Uri
+import android.net.wifi.WifiManager
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.youtube.player.YouTubeStandalonePlayer
@@ -35,10 +41,7 @@ class DetailFragment : Fragment() {
     private var weListId = 0
     private var API_KEY = "AIzaSyD331YQUKyZK_sY7LSXxFUO1Q8SoUjB6GM"
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
@@ -55,7 +58,6 @@ class DetailFragment : Fragment() {
         observeViewModel()
 
 
-
         val requestOptions = RequestOptions()
             .placeholder(R.drawable.img_placeholder)
             .override(300, 200)
@@ -65,9 +67,9 @@ class DetailFragment : Fragment() {
             .into(thumbnailYoutube)
 
         playButton.setOnClickListener {
-            val intent = YouTubeStandalonePlayer.createVideoIntent(activity, API_KEY, VIDEO_ID)
-            startActivity(intent)
+            checkingConnectiontoPlayVideo()
         }
+
 
 
     }
@@ -86,6 +88,60 @@ class DetailFragment : Fragment() {
             }
         })
 
+    }
+
+    fun checkingConnectiontoPlayVideo() {
+
+        val connectiviyManager = activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = connectiviyManager.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnected == true
+
+        val wifiManager = activity?.applicationContext?.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val wifiConnected : Boolean = wifiManager.isWifiEnabled == true
+
+        val youtubeIntent = YouTubeStandalonePlayer.createVideoIntent(activity, API_KEY, VIDEO_ID)
+        val builder = AlertDialog.Builder(getActivity())
+
+
+        if(isConnected && wifiConnected) {
+
+            startActivity(youtubeIntent)
+
+        }else if(isConnected && !wifiConnected) {
+
+            builder.setMessage(R.string.ask_for_wifi)
+                .setTitle(R.string.title_ask_for_wifi)
+                .setCancelable(true)
+                .setPositiveButton(R.string.connect_wifi) { dialog, id ->
+
+                    startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+
+                }
+                .setNegativeButton(R.string.play) { dialog, id ->
+
+                    startActivity(youtubeIntent)
+
+                }
+
+            val alert = builder.create()
+            alert.show()
+        } else if(!isConnected){
+            builder.setMessage(R.string.ask_for_connection)
+                .setTitle(R.string.title_dialog)
+                .setCancelable(false)
+                .setPositiveButton(R.string.mobile_data) { dialog, id ->
+
+                    startActivity(Intent(Settings.ACTION_DATA_USAGE_SETTINGS))
+
+                }
+                .setNegativeButton(R.string.cancel) { dialog, id ->
+
+                    dialog.dismiss()
+
+                }
+            val alert = builder.create()
+            alert.show()
+        }
     }
 }
 
