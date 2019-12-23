@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.navigation.Navigation
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.QuotesViewModel
 import kotlinx.android.synthetic.main.fragment_dashboard.*
+import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.util.MusicService
 
 /**
  * A simple [Fragment] subclass.
@@ -48,6 +50,15 @@ class DashboardFragment : Fragment() {
         longTerm.setOnClickListener{
             Navigation.findNavController(it)
                 .navigate(DashboardFragmentDirections.actionDashtoLongList())
+        }
+
+        buttonPlayMusic.setOnClickListener {
+            activity?.startService(Intent(activity, MusicService::class.java))
+        }
+
+        buttonStopMusic.setOnClickListener {
+            activity?.stopService(Intent(activity, MusicService::class.java))
+
         }
 
     }

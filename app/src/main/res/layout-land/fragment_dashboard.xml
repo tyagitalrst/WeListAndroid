@@ -110,6 +110,66 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="16dp"
+                    app:cardBackgroundColor="#CCA63F00"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/music"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/musicTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/music_of_the_day"
+                            android:textColor="@color/brokenWhite"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <Button
+                            android:id="@+id/buttonPlayMusic"
+                            android:layout_width="100dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="144dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/rounded_button"
+                            android:text="@string/play"
+                            android:textColor="@color/blue"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/musicTitle" />
+
+                        <Button
+                            android:id="@+id/buttonStopMusic"
+                            android:layout_width="100dp"
+                            android:layout_height="32dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="144dp"
+                            android:background="@drawable/rounded_button"
+                            android:text="@string/stop"
+                            android:textColor="@color/blue"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/musicTitle" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="16dp"
                     app:cardBackgroundColor="@color/blue"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="8dp">

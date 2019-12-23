@@ -33,6 +33,8 @@
     <string name="title_dialog">Peringatan</string>
     <string name="connect_wifi">Sambungkan ke Wifi</string>
     <string name="play">Putar</string>
+    <string name="stop">Berhenti</string>
     <string name="cancel">Batal</string>
     <string name="mobile_data">Hidupkan Data Selular</string>
+    <string name="music_of_the_day">Musik Hari Ini</string>
 </resources>

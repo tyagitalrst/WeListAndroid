@@ -32,6 +32,8 @@
     <string name="title_dialog">Warning</string>
     <string name="connect_wifi">Connect to Wifi</string>
     <string name="play">Play</string>
+    <string name="stop">Stop</string>
     <string name="cancel">Cancel</string>
     <string name="mobile_data">Turn On Mobile Data</string>
+    <string name="music_of_the_day">Music of The Day</string>
 </resources>
