@@ -2,7 +2,6 @@ package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +11,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
-import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.Quotes
-import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeList
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.QuotesViewModel
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 

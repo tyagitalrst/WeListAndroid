@@ -22,11 +22,8 @@ import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.model.entity.WeListL
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.WeListViewModel
 import kotlinx.android.synthetic.main.fragment_create_list.*
-import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.activity.MainActivity
-import android.content.DialogInterface
 import androidx.core.app.ActivityCompat
 
-//import sun.jvm.hotspot.utilities.IntArray
 
 
 /**

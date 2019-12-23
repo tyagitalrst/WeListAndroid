@@ -27,5 +27,12 @@
     <string name="required">Kolom ini Harus Diisi</string>
     <string name="permission_rationale">Izin aplikasi untuk mengakses memori eksternal. Tanpa permission ini aplikasi tidak dapat mengakses foto pada galeri.</string>
     <string name="permission_required">Izin Akses Dibutuhkan</string>
-
+    <string name="ask_for_wifi">Menggunakan data selular akan membutuhkan tambahan biaya.</string>
+    <string name="title_ask_for_wifi">Putar video menggunakan data selular?</string>
+    <string name="ask_for_connection">Unutk memutar video, kamu harus terhubung dengan internet.</string>
+    <string name="title_dialog">Peringatan</string>
+    <string name="connect_wifi">Sambungkan ke Wifi</string>
+    <string name="play">Putar</string>
+    <string name="cancel">Batal</string>
+    <string name="mobile_data">Hidupkan Data Selular</string>
 </resources>

@@ -26,4 +26,12 @@
     <string name="required">This field is required</string>
     <string name="permission_rationale">Permission to access the external storage is needed. Without this permission the app is unable to access your gallery.</string>
     <string name="permission_required">Permission Required</string>
+    <string name="ask_for_wifi">Using data over a mobile data may incur additional fees.</string>
+    <string name="title_ask_for_wifi">Play Video Using Mobile Data?</string>
+    <string name="ask_for_connection">To play this video, you need connected to the internet.</string>
+    <string name="title_dialog">Warning</string>
+    <string name="connect_wifi">Connect to Wifi</string>
+    <string name="play">Play</string>
+    <string name="cancel">Cancel</string>
+    <string name="mobile_data">Turn On Mobile Data</string>
 </resources>
