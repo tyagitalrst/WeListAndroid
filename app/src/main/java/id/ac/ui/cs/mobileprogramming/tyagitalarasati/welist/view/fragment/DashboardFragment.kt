@@ -43,6 +43,11 @@ class DashboardFragment : Fragment() {
                 .navigate(DashboardFragmentDirections.actionDashboardtoCreate())
         }
 
+        createReminder.setOnClickListener{
+            Navigation.findNavController(it)
+                .navigate(DashboardFragmentDirections.dashboardtoReminder())
+        }
+
         shortTerm.setOnClickListener{
             Navigation.findNavController(it)
                 .navigate(DashboardFragmentDirections.actionDashtoList())
@@ -64,8 +69,9 @@ class DashboardFragment : Fragment() {
             activity?.stopService(Intent(activity, MusicService::class.java))
             buttonPlayMusic.visibility = View.VISIBLE
             buttonStopMusic.visibility = View.INVISIBLE
-
         }
+
+
 
     }
 

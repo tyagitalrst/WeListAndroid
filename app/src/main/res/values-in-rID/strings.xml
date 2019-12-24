@@ -37,4 +37,10 @@
     <string name="cancel">Batal</string>
     <string name="mobile_data">Hidupkan Data Selular</string>
     <string name="music_of_the_day">Musik Hari Ini</string>
+    <string name="create_reminder">Atur Pengingat Waktu Diskon Hari Ini Barang Keinginanan</string>
+    <string name="title_reminder">Pengingat</string>
+    <string name="set_reminder">Atur Alarm</string>
+    <string name="stop_alarm">Hentikan Alarm</string>
+    <string name="empty_state_reminder">Alarm belum diatur</string>
+    <string name="state_reminder">Alarm diatur jam:</string>
 </resources>

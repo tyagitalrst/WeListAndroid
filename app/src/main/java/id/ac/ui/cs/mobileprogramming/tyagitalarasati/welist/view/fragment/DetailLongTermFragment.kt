@@ -1,7 +1,14 @@
 package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.net.Uri
+import android.net.wifi.WifiManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,8 +67,7 @@ class DetailLongTermFragment: Fragment() {
 
 
             playButton.setOnClickListener {
-                val intent = YouTubeStandalonePlayer.createVideoIntent(activity, API_KEY, VIDEO_ID)
-                startActivity(intent)
+                checkingConnectiontoPlayVideo()
             }
 
 
@@ -82,6 +88,61 @@ class DetailLongTermFragment: Fragment() {
             })
 
         }
+
+
+    fun checkingConnectiontoPlayVideo() {
+
+        val connectiviyManager = activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = connectiviyManager.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnected == true
+
+        val wifiManager = activity?.applicationContext?.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val wifiConnected : Boolean = wifiManager.isWifiEnabled == true
+
+        val youtubeIntent = YouTubeStandalonePlayer.createVideoIntent(activity, API_KEY, VIDEO_ID)
+        val builder = AlertDialog.Builder(getActivity())
+
+
+        if(isConnected && wifiConnected) {
+
+            startActivity(youtubeIntent)
+
+        }else if(isConnected && !wifiConnected) {
+
+            builder.setMessage(R.string.ask_for_wifi)
+                .setTitle(R.string.title_ask_for_wifi)
+                .setCancelable(true)
+                .setPositiveButton(R.string.connect_wifi) { dialog, id ->
+
+                    startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+
+                }
+                .setNegativeButton(R.string.play) { dialog, id ->
+
+                    startActivity(youtubeIntent)
+
+                }
+
+            val alert = builder.create()
+            alert.show()
+        } else if(!isConnected){
+            builder.setMessage(R.string.ask_for_connection)
+                .setTitle(R.string.title_dialog)
+                .setCancelable(false)
+                .setPositiveButton(R.string.mobile_data) { dialog, id ->
+
+                    startActivity(Intent(Settings.ACTION_DATA_USAGE_SETTINGS))
+
+                }
+                .setNegativeButton(R.string.cancel) { dialog, id ->
+
+                    dialog.dismiss()
+
+                }
+            val alert = builder.create()
+            alert.show()
+        }
+    }
 
 }
 

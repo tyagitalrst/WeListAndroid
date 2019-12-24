@@ -36,4 +36,11 @@
     <string name="cancel">Cancel</string>
     <string name="mobile_data">Turn On Mobile Data</string>
     <string name="music_of_the_day">Music of The Day</string>
+    <string name="create_reminder">Set Reminder Sale Time of Wishlist Item of The Day</string>
+    <string name="title_reminder">Reminder</string>
+    <string name="set_reminder">Set Alarm</string>
+    <string name="stop_alarm">Stop Alarm</string>
+    <string name="empty_state_reminder">Alarm is not set yet</string>
+    <string name="state_reminder">Alarm set to:</string>
+
 </resources>

@@ -65,6 +65,9 @@
         <action
             android:id="@+id/actionDashboardtoCreate"
             app:destination="@id/createListFragment" />
+        <action
+            android:id="@+id/dashboardtoReminder"
+            app:destination="@id/reminderFragment" />
     </fragment>
     <fragment
         android:id="@+id/listLongTermFragment"
@@ -88,5 +91,13 @@
             android:name="id"
             android:defaultValue="0"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/reminderFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.view.fragment.ReminderFragment"
+        android:label="ReminderFragment" >
+        <action
+            android:id="@+id/remindertoDashboard"
+            app:destination="@id/dashboardFragment" />
     </fragment>
 </navigation>

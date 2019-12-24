@@ -33,6 +33,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <receiver android:name = ".util.NotificationPublisher" />
         <service android:name= ".util.MusicService" />
+        <receiver android:name=".util.AlarmReceiver" />
+        <service android:name= ".util.RingtoneService" />
     </application>
 
 </manifest>
