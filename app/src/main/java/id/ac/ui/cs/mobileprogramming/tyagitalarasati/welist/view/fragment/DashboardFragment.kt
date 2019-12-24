@@ -34,6 +34,7 @@ class DashboardFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(QuotesViewModel::class.java)
+        buttonStopMusic.visibility = View.INVISIBLE
 
         observeViewModel()
 
@@ -54,10 +55,15 @@ class DashboardFragment : Fragment() {
 
         buttonPlayMusic.setOnClickListener {
             activity?.startService(Intent(activity, MusicService::class.java))
+            buttonStopMusic.visibility = View.VISIBLE
+            buttonPlayMusic.visibility = View.INVISIBLE
+
         }
 
         buttonStopMusic.setOnClickListener {
             activity?.stopService(Intent(activity, MusicService::class.java))
+            buttonPlayMusic.visibility = View.VISIBLE
+            buttonStopMusic.visibility = View.INVISIBLE
 
         }
 
