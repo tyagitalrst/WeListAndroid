@@ -45,10 +45,6 @@ class DashboardFragment : Fragment() {
                 .navigate(DashboardFragmentDirections.actionDashboardtoCreate())
         }
 
-        createReminder.setOnClickListener{
-            Navigation.findNavController(it)
-                .navigate(DashboardFragmentDirections.dashboardtoReminder())
-        }
 
         shortTerm.setOnClickListener{
             Navigation.findNavController(it)

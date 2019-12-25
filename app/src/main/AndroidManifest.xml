@@ -8,6 +8,7 @@
     <uses-permission android:name = "android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
 
 
     <application
@@ -32,9 +33,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <receiver android:name = ".util.NotificationPublisher" />
-        <service android:name= ".util.MusicService" />
-        <receiver android:name=".util.AlarmReceiver" />
-        <service android:name= ".util.RingtoneService" />
+        <service android:name = ".util.MusicService" />
     </application>
 
 </manifest>

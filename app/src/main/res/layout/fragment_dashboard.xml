@@ -212,44 +212,6 @@
                     app:cardElevation="8dp">
 
                     <LinearLayout
-                        android:id="@+id/createReminder"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:src="@drawable/discount"
-                            app:srcCompat="@drawable/discount"
-                            tools:srcCompat="@drawable/discount" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="@string/create_reminder"
-                            android:textAlignment="center"
-                            android:textColor="@color/brokenWhite"
-                            android:textSize="18dp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="16dp"
-                    app:cardBackgroundColor="@color/blue"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="8dp">
-
-                    <LinearLayout
                         android:id="@+id/shortTerm"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
