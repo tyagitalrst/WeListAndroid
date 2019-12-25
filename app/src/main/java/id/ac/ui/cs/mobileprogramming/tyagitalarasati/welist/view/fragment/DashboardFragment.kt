@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import android.app.ActivityManager
+import android.content.Context
 
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.viewmodel.QuotesViewModel
@@ -71,6 +73,11 @@ class DashboardFragment : Fragment() {
             buttonStopMusic.visibility = View.INVISIBLE
         }
 
+        if(checkRunningService(MusicService::class.java)) {
+            buttonStopMusic.visibility = View.VISIBLE
+            buttonPlayMusic.visibility = View.INVISIBLE
+        }
+
 
 
     }
@@ -85,6 +92,16 @@ class DashboardFragment : Fragment() {
             }
         })
 
+    }
+
+    private fun checkRunningService(serviceClass: Class<*>): Boolean {
+        val activityManager = activity?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (service in activityManager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.name == service.service.className) {
+                return true
+            }
+        }
+        return false
     }
 
     external fun randomNumber(): Int
