@@ -45,6 +45,7 @@ class ReminderFragment : Fragment() {
         val alarmIntent = Intent(activity, AlarmReceiver::class.java)
         val calendar = Calendar.getInstance()
 
+
         buttonSetAlarm.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                 calendar.set(Calendar.HOUR_OF_DAY, timePicker.hour)
@@ -85,6 +86,7 @@ class ReminderFragment : Fragment() {
 
             val pendingIntent = PendingIntent.getBroadcast(activity, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT)
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+//            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, calendar.timeInMillis, pendingIntent)
         }
 
         buttonStopAlarm.setOnClickListener {

@@ -1,15 +1,16 @@
 package id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.util
 
-import android.app.Notification
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.Service
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.media.Ringtone
 import android.media.RingtoneManager
 import android.os.Bundle
 import android.os.IBinder
+import android.util.Log
+import android.app.Notification
+import android.app.NotificationManager
+import android.app.NotificationChannel
 import androidx.core.app.NotificationCompat
 import androidx.navigation.NavDeepLinkBuilder
 import id.ac.ui.cs.mobileprogramming.tyagitalarasati.welist.R
@@ -19,6 +20,9 @@ class RingtoneService : Service() {
 
     companion object {
         lateinit var ringtone: Ringtone
+//        var NOTIFICATION_ID = "notification-id"
+//        var NOTIFICATION = "notification"
+        var NOTIFICATION_CHANNEL_ID = "AlarmManager"
     }
 
     var id = 0
@@ -78,18 +82,31 @@ class RingtoneService : Service() {
 //        val main = Intent(this, MainActivity::class.java)
 //        val pendingIntent = PendingIntent.getActivity(this, 0, main, 0)
         val defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        var notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        var notifyManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val notificationBuilder = NotificationCompat.Builder(this, "AlarmChannel")
-            .setContentTitle("Alarm is going off")
-            .setSmallIcon(R.mipmap.ic_launcher_round)
-            .setSound(defaultSound)
-            .setContentText("Click Me")
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-            .build()
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val notificationChannel = NotificationChannel(
+                NotificationPublisher.NOTIFICATION_CHANNEL_ID,
+                "NOTIFICATION_CHANNEL_NEW",
+                importance
+            )
+            assert(notificationManager != null)
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
 
-        notifyManager.notify(0, notificationBuilder)
+
+        val notificationBuilder = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder.setContentTitle("Alarm is going off")
+        notificationBuilder.setSmallIcon(R.drawable.ic_launcher_background)
+        notificationBuilder.setSound(defaultSound)
+        notificationBuilder.setContentText("Click Me")
+        notificationBuilder.setContentIntent(pendingIntent)
+        notificationBuilder.setChannelId(NOTIFICATION_CHANNEL_ID)
+        notificationBuilder.setAutoCancel(true)
+
+        assert(notificationManager != null)
+        notificationManager.notify(10, notificationBuilder.build())
     }
 
     private fun playAlarm() {
