@@ -28,7 +28,7 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splashscreen)
 
-        scheduleNotification(getNotification( listOfNotif.get(id) ) , 10000 )
+        scheduleNotification(getNotification( listOfNotif.get(id) ) , 10 )
 
         Handler().postDelayed({
             startActivity(Intent(this,
@@ -38,7 +38,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     }
 
-    private fun scheduleNotification(notification: Notification, delay: Int) {
+    private fun scheduleNotification(notification: Notification, minute: Int) {
         val notificationIntent = Intent(this, NotificationPublisher::class.java)
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1)
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification)
@@ -48,7 +48,7 @@ class SplashScreenActivity : AppCompatActivity() {
             notificationIntent,
             PendingIntent.FLAG_UPDATE_CURRENT
         )
-        val futureInMillis = SystemClock.elapsedRealtime() + delay
+        val futureInMillis = SystemClock.elapsedRealtime() + (60000*minute)
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent)
     }
