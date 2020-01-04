@@ -1,2 +1,2 @@
 # WeListAndroid
-Mobile programming midterm project
+Mobile programming individual project
